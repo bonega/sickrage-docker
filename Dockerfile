@@ -17,8 +17,9 @@ RUN mkdir /sickrage/download
 RUN mkdir /sickrage/config
 
 CMD [ "--config", "/sickrage/config" ]
-ENTRYPOINT [ "/sickrage/0.2.1/SickRage.py" ]
 
 RUN mkdir /sickrage/4.0.9
 # Install SickRage 4.0.9
 RUN wget --no-verbose --output-document=- https://github.com/SiCKRAGETV/SickRage/archive/v4.0.9.tar.gz | tar --directory=/sickrage/4.0.9 --extract --gzip --file=- --strip-components=1
+
+ENTRYPOINT [ "/sickrage/4.0.9/SickBeard.py" ]
