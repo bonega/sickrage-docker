@@ -16,10 +16,10 @@ RUN mkdir /sickrage/tv
 RUN mkdir /sickrage/download
 RUN mkdir /sickrage/config
 
-CMD [ "--config", "/sickrage/config" ]
 
 RUN mkdir /sickrage/4.0.9
 # Install SickRage 4.0.9
 RUN wget --no-verbose --output-document=- https://github.com/SiCKRAGETV/SickRage/archive/v4.0.9.tar.gz | tar --directory=/sickrage/4.0.9 --extract --gzip --file=- --strip-components=1
 
+CMD [ "--datadir", "/sickrage/config" ]
 ENTRYPOINT [ "/sickrage/4.0.9/SickBeard.py" ]
