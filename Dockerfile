@@ -25,5 +25,8 @@ RUN git clone --branch v4.0.8 --quiet http://github.com/SiCKRAGETV/SickRage /opt
 RUN git -C /opt/sickrage checkout -b master
 RUN git -C /opt/sickrage branch --set-upstream-to=origin/master
 
+RUN perl -p -i -e's/import subprocess/import os/; s/\Qsubprocess.Popen(popen_list, cwd=os.getcwd())\Q/os.execv(popen_list[0], popen_list)/' /opt/sickrage/SickBeard.py
+RUN git -C /opt/sickrage -c user.name="Daniel Holz" -c user.email="<dgholz@gmail.com>" commit --all --message="exec on restart"
+
 CMD [ "--datadir", "/sickrage/config" ]
 ENTRYPOINT [ "/opt/sickrage/SickBeard.py" ]
