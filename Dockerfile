@@ -7,6 +7,7 @@ RUN /usr/bin/perl -p -i -e '/update/ or s/main/main non-free/' /etc/apt/sources.
 
 RUN apt-get update --quiet=2
 RUN apt-get install --quiet=2 python python-cheetah ca-certificates wget unrar
+RUN apt-get install --quiet=2 git
 
 RUN mkdir /sickrage
 
@@ -17,9 +18,12 @@ RUN mkdir /sickrage/download
 RUN mkdir /sickrage/config
 
 
-RUN mkdir /sickrage/4.0.9
-# Install SickRage 4.0.9
-RUN wget --no-verbose --output-document=- https://github.com/SiCKRAGETV/SickRage/archive/v4.0.9.tar.gz | tar --directory=/sickrage/4.0.9 --extract --gzip --file=- --strip-components=1
+RUN mkdir -p /opt/sickrage
+# Install SickRage
+#RUN wget --no-verbose --output-document=- http://github.com/SiCKRAGETV/SickRage/tarball/master | tar --directory=/opt/sickrage --extract --gzip --file=- --strip-components=1
+RUN git clone --branch v4.0.8 --quiet http://github.com/SiCKRAGETV/SickRage /opt/sickrage
+RUN git -C /opt/sickrage checkout -b master
+RUN git -C /opt/sickrage branch --set-upstream-to=origin/master
 
 CMD [ "--datadir", "/sickrage/config" ]
-ENTRYPOINT [ "/sickrage/4.0.9/SickBeard.py" ]
+ENTRYPOINT [ "/opt/sickrage/SickBeard.py" ]
