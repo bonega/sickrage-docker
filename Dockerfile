@@ -20,13 +20,9 @@ RUN mkdir /sickrage/config
 
 RUN mkdir -p /opt/sickrage
 # Install SickRage
-#RUN wget --no-verbose --output-document=- http://github.com/SiCKRAGETV/SickRage/tarball/master | tar --directory=/opt/sickrage --extract --gzip --file=- --strip-components=1
-RUN git clone --branch v4.0.8 --quiet http://github.com/SiCKRAGETV/SickRage /opt/sickrage
-RUN git -C /opt/sickrage checkout -b master
-RUN git -C /opt/sickrage branch --set-upstream-to=origin/master
-
-RUN perl -p -i -e's/import subprocess/import os/; s/\Qsubprocess.Popen(popen_list, cwd=os.getcwd())\Q/os.execv(popen_list[0], popen_list)/' /opt/sickrage/SickBeard.py
-RUN git -C /opt/sickrage -c user.name="Daniel Holz" -c user.email="<dgholz@gmail.com>" commit --all --message="exec on restart"
+RUN git clone --branch restart_with_exec --quiet https://github.com/dgholz/SickRage-1.git /opt/sickrage
+#RUN git -C /opt/sickrage checkout -b master
+#RUN git -C /opt/sickrage branch --set-upstream-to=origin/master
 
 CMD [ "--datadir", "/sickrage/config" ]
 ENTRYPOINT [ "/opt/sickrage/SickBeard.py" ]
