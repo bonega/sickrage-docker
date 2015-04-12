@@ -9,8 +9,6 @@ RUN apt-get update --quiet=2
 RUN apt-get install --quiet=2 python python-cheetah ca-certificates wget unrar
 RUN apt-get install --quiet=2 git
 
-RUN mkdir /sickrage
-
 EXPOSE 8081
 
 RUN mkdir /torrent
