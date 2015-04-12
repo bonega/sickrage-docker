@@ -13,14 +13,15 @@ RUN mkdir /sickrage
 
 EXPOSE 8081
 
-RUN mkdir /sickrage/tv
-RUN mkdir /sickrage/download
-RUN mkdir /sickrage/config
+RUN mkdir /torrent
+RUN mkdir /config
 
 
 RUN mkdir -p /opt/sickrage
 # Install SickRage
 RUN git clone --quiet https://github.com/SiCKRAGETV/SickRage.git /opt/sickrage
 
-CMD [ "--datadir", "/sickrage/config" ]
-ENTRYPOINT [ "/opt/sickrage/SickBeard.py" ]
+ADD sickrage.sh /opt/sickrage.sh
+RUN chmod +x /opt/sickrage.sh
+
+ENTRYPOINT ["/opt/sickrage.sh"]
