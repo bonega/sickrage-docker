@@ -20,9 +20,7 @@ RUN mkdir /sickrage/config
 
 RUN mkdir -p /opt/sickrage
 # Install SickRage
-RUN git clone --branch restart_with_exec --quiet https://github.com/dgholz/SickRage-1.git /opt/sickrage
-#RUN git -C /opt/sickrage checkout -b master
-#RUN git -C /opt/sickrage branch --set-upstream-to=origin/master
+RUN git clone --quiet https://github.com/SiCKRAGETV/SickRage.git /opt/sickrage
 
 CMD [ "--datadir", "/sickrage/config" ]
 ENTRYPOINT [ "/opt/sickrage/SickBeard.py" ]
