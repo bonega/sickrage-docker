@@ -12,7 +12,6 @@ RUN apt-get install --quiet=2 git
 EXPOSE 8081
 
 RUN mkdir /torrent
-RUN mkdir /config
 
 
 RUN mkdir -p /opt/sickrage
