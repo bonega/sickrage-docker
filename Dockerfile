@@ -16,7 +16,7 @@ RUN mkdir /torrent
 
 RUN mkdir -p /opt/sickrage
 # Install SickRage
-RUN git clone --quiet https://github.com/SiCKRAGETV/SickRage.git /opt/sickrage && cd /opt/sickrage && git reset --hard v4.0.16
+RUN git clone --quiet https://github.com/SiCKRAGETV/SickRage.git /opt/sickrage && cd /opt/sickrage && git reset --hard v4.0.17
 
 ADD sickrage.sh /opt/sickrage.sh
 RUN chmod +x /opt/sickrage.sh
